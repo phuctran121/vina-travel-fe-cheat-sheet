@@ -4,7 +4,8 @@ import { getBaseUrl } from "@/lib/utils";
 
 async function getUser() {
   // Gọi API User (Mock delay 100ms)
-  const res = await fetch(`${getBaseUrl()}/api/user`, {
+  const baseUrl = await getBaseUrl();
+  const res = await fetch(`${baseUrl}/api/user`, {
     cache: "no-store", // Dashboard cần data mới nhất, không cache
   });
 

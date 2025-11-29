@@ -1,15 +1,28 @@
 // components/home/FeaturedSection.tsx
 import FeaturedSliderWrapper from "./FeaturedSliderWrapper";
 import { getBaseUrl } from "@/lib/utils";
+import { TOURS } from "@/lib/mock-db";
 
 // Fetch Data từ Mock API (Server Side)
+// Fallback to direct import if fetch fails (more reliable for SSR)
 async function getFeaturedTours() {
-  const res = await fetch(`${getBaseUrl()}/api/tours`, {
-    cache: "no-store",
-  });
+  try {
+    const baseUrl = await getBaseUrl();
+    const url = baseUrl ? `${baseUrl}/api/tours` : "/api/tours";
+    const res = await fetch(url, {
+      cache: "no-store",
+    });
 
-  if (!res.ok) throw new Error("Failed to fetch tours");
-  return res.json();
+    if (!res.ok) {
+      console.warn("Failed to fetch tours from API, using direct import");
+      return TOURS;
+    }
+    return res.json();
+  } catch (error) {
+    console.error("Error fetching tours:", error);
+    // Fallback to direct import if fetch fails
+    return TOURS;
+  }
 }
 
 export default async function FeaturedSection() {

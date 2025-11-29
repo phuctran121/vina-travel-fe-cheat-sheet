@@ -7,7 +7,9 @@ export const contentType = "image/png";
 
 export default async function Image({ params }: { params: { slug: string } }) {
   // Fetch data trực tiếp trong hàm generate ảnh
-  const tour = await fetch(`${getBaseUrl()}/api/tours/${params.slug}`, {
+  // Edge runtime doesn't support headers(), so use environment variables
+  const baseUrl = await getBaseUrl();
+  const tour = await fetch(`${baseUrl}/api/tours/${params.slug}`, {
     cache: "no-store",
   }).then((res) => res.json());
 

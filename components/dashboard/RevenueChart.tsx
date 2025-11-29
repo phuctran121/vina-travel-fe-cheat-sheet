@@ -13,7 +13,8 @@ interface Stats {
 
 async function getStats(): Promise<Stats> {
   // Gọi API Stats (Mock delay 3000ms !!!)
-  const res = await fetch(`${getBaseUrl()}/api/user/stats`, {
+  const baseUrl = await getBaseUrl();
+  const res = await fetch(`${baseUrl}/api/user/stats`, {
     cache: "no-store",
   });
   if (!res.ok) throw new Error("Failed to load stats");

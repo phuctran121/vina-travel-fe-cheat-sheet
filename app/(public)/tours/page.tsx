@@ -18,7 +18,8 @@ interface Tour {
 }
 // Hàm fetch data an toàn
 async function getTours(search?: string) {
-  const url = new URL(`${getBaseUrl()}/api/tours`);
+  const baseUrl = await getBaseUrl();
+  const url = new URL(`${baseUrl}/api/tours`);
 
   // Chỉ append param search nếu nó có giá trị (không rỗng, không undefined)
   if (search && search.trim() !== "") {

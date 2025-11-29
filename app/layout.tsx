@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/ui/Header"; // <--- Import Header vừa tạo
 import NextTopLoader from "nextjs-toploader";
+import Footer from "@/components/home/Footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,6 +35,7 @@ export default function RootLayout({
             <NextTopLoader />
             <Header />
             {children}
+            <Footer />
           </div>
         </div>
       </body>

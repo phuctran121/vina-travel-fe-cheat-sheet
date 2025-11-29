@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-
+import { getBaseUrl } from "@/lib/utils";
 export const runtime = "edge"; // Chạy ở Edge function cho nhanh
 export const alt = "Chi tiết Tour Du Lịch";
 export const size = { width: 1200, height: 630 };
@@ -7,11 +7,9 @@ export const contentType = "image/png";
 
 export default async function Image({ params }: { params: { slug: string } }) {
   // Fetch data trực tiếp trong hàm generate ảnh
-  const tour = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"}/api/tours/${
-      params.slug
-    }`
-  ).then((res) => res.json());
+  const tour = await fetch(`${getBaseUrl()}/api/tours/${params.slug}`, {
+    cache: "no-store",
+  }).then((res) => res.json());
 
   return new ImageResponse(
     (

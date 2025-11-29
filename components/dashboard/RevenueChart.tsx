@@ -1,5 +1,5 @@
 import { JSX } from "react";
-
+import { getBaseUrl } from "@/lib/utils";
 interface ChartDataItem {
   month: string;
   value: number;
@@ -13,14 +13,9 @@ interface Stats {
 
 async function getStats(): Promise<Stats> {
   // Gọi API Stats (Mock delay 3000ms !!!)
-  const res = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"
-    }/api/user/stats`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${getBaseUrl()}/api/user/stats`, {
+    cache: "no-store",
+  });
   if (!res.ok) throw new Error("Failed to load stats");
   const data = (await res.json()) as Stats;
   return data;

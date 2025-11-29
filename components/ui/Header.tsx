@@ -13,6 +13,7 @@ const NAV_ITEMS = [
     href: "/tours/kham-pha-ha-long-3n2d",
   },
   { label: "Dashboard (Streaming)", href: "/dashboard" },
+  { label: "Blog (SSG)", href: "/blog" },
 ];
 
 export default function Header() {

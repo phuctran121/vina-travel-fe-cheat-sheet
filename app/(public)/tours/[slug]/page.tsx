@@ -5,6 +5,8 @@ import MapWrapper from "@/components/tours/MapWrapper";
 import { TOURS } from "@/lib/mock-db";
 import { delay } from "@/lib/utils";
 import { unstable_cache } from "next/cache"; // <--- 1. Import cái này
+import HeroImage from "@/public/images/aop-hero-section_poster.webp";
+import BookingModalWrapper from "@/components/tours/BookingModalWrapper";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -15,14 +17,15 @@ type Props = {
 const getTourCached = unstable_cache(
   async (slug: string) => {
     // Giả lập DB chậm 2s
-    console.log(`--- Đang tìm tour ${slug} trong DB (Chậm)... ---`);
     await delay(2000);
 
     const tour = TOURS.find((t) => t.slug === slug);
+    console.log("new fetch for tour:", slug);
+
     return tour || null;
   },
   ["get-tour-detail"], // Key cache
-  { revalidate: 3600 } // Cache sống trong 1 tiếng (ISR)
+  { revalidate: 20 } // Cache sống trong 1 tiếng (ISR)
 );
 
 // 3. QUAN TRỌNG: Trả về mảng rỗng để KHÔNG build sẵn HTML lúc deploy
@@ -57,7 +60,7 @@ export default async function TourDetailPage({ params }: Props) {
       {/* Giữ nguyên phần UI bên dưới của bạn */}
       <div className="relative w-full h-[50vh] min-h-[400px]">
         <Image
-          src={tour.image}
+          src={HeroImage}
           alt={tour.name}
           fill
           priority
@@ -104,9 +107,7 @@ export default async function TourDetailPage({ params }: Props) {
               }).format(tour.price)}
             </div>
             <p className="text-gray-500 mb-6 text-sm">/ khách</p>
-            <button className="w-full py-4 bg-primary hover:bg-sky-600 text-white font-bold rounded-lg transition-colors text-lg shadow-md">
-              Đặt ngay
-            </button>
+            <BookingModalWrapper tourName={tour.name} price={tour.price} />
             <p className="text-xs text-center text-gray-400 mt-4">
               Cam kết hoàn tiền 100% nếu hủy trước 24h
             </p>

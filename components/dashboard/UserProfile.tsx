@@ -1,14 +1,13 @@
 import Image from "next/image";
 import HeroImg from "@/public/images/aop-hero-section_poster.webp";
+import { getBaseUrl } from "@/lib/utils";
 
 async function getUser() {
   // Gọi API User (Mock delay 100ms)
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"}/api/user`,
-    {
-      cache: "no-store", // Dashboard cần data mới nhất, không cache
-    }
-  );
+  const res = await fetch(`${getBaseUrl()}/api/user`, {
+    cache: "no-store", // Dashboard cần data mới nhất, không cache
+  });
+
   if (!res.ok) throw new Error("Failed to load user");
   return res.json();
 }

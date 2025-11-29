@@ -1,14 +1,13 @@
 // components/home/FeaturedSection.tsx
 import FeaturedSliderWrapper from "./FeaturedSliderWrapper";
+import { getBaseUrl } from "@/lib/utils";
 
 // Fetch Data từ Mock API (Server Side)
 async function getFeaturedTours() {
-  const res = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"}/api/tours`,
-    {
-      cache: "no-store",
-    }
-  );
+  const res = await fetch(`${getBaseUrl()}/api/tours`, {
+    cache: "no-store",
+  });
+
   if (!res.ok) throw new Error("Failed to fetch tours");
   return res.json();
 }

@@ -1,5 +1,41 @@
 // lib/mock-db.ts
 
+export const BLOG_POSTS = [
+  {
+    id: 1,
+    slug: "kinh-nghiem-du-lich-ha-long",
+    title: "Kinh nghiệm du lịch Hạ Long tự túc 2025",
+    excerpt:
+      "Tổng hợp chi phí, địa điểm ăn chơi, ngủ nghỉ chi tiết nhất cho người mới đi lần đầu.",
+    image:
+      "https://images.unsplash.com/photo-1559592413-7cec4d0aa73b?q=80&w=800",
+    date: "20/11/2025",
+    content: "Nội dung bài viết rất dài về Hạ Long...",
+  },
+  {
+    id: 2,
+    slug: "top-5-mon-an-da-nang",
+    title: "Top 5 món ăn không thể bỏ qua khi đến Đà Nẵng",
+    excerpt:
+      "Đà Nẵng không chỉ đẹp mà còn là thiên đường ẩm thực với Mì Quảng, Bánh tráng thịt heo...",
+    image:
+      "https://images.unsplash.com/photo-1565691079366-0775d7870a25?q=80&w=800",
+    date: "18/11/2025",
+    content: "Nội dung bài viết về ẩm thực Đà Nẵng...",
+  },
+  {
+    id: 3,
+    slug: "bi-kip-san-ve-may-bay-gia-re",
+    title: "Bí kíp săn vé máy bay giá rẻ mùa cao điểm",
+    excerpt:
+      "Hướng dẫn cách đặt vé sớm, chọn giờ bay và sử dụng các app để có giá tốt nhất.",
+    image:
+      "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?q=80&w=800",
+    date: "15/11/2025",
+    content: "Nội dung bài viết về vé máy bay...",
+  },
+];
+
 // 1. Data cho Slider (Trang chủ)
 export const DESTINATIONS = [
   {

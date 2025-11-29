@@ -1,5 +1,6 @@
 import TourCard from "@/components/tours/TourCard";
 import { Metadata } from "next";
+import { getBaseUrl } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Danh sách Tour du lịch",
@@ -17,9 +18,7 @@ interface Tour {
 }
 // Hàm fetch data an toàn
 async function getTours(search?: string) {
-  const url = new URL(
-    `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000"}/api/tours`
-  );
+  const url = new URL(`${getBaseUrl()}/api/tours`);
 
   // Chỉ append param search nếu nó có giá trị (không rỗng, không undefined)
   if (search && search.trim() !== "") {

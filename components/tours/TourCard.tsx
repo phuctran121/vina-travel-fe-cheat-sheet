@@ -22,7 +22,7 @@ export default function TourCard({ tour }: TourCardProps) {
     <Link href={`/tours/${tour.slug}`} className="group block h-full">
       <div className="bg-white border rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 h-full flex flex-col">
         {/* Wrapper ảnh */}
-        <div className="relative aspect-[4/3] w-full overflow-hidden">
+        <div className="relative aspect-4/3 w-full overflow-hidden">
           <OptimizedImage
             src={HeroImg}
             alt={tour.name}

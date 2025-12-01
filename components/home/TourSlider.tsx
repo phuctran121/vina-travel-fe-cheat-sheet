@@ -8,7 +8,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import OptimizedImage from "@/components/ui/OptimizedImage";
 import Link from "next/link";
-import HeroImg from "@/public/images/aop-hero-section_poster.webp";
+import HeroImg from "@/public/images/esg-result-background-old.webp";
 
 // Định nghĩa kiểu dữ liệu props
 interface Tour {
@@ -37,7 +37,11 @@ export default function TourSlider({ tours }: { tours: Tour[] }) {
       >
         {tours.map((tour) => (
           <SwiperSlide key={tour.id}>
-            <Link href={`/tours/${tour.slug}`} className="block group">
+            <Link
+              href={`/tours/${tour.slug}`}
+              className="block group"
+              prefetch={false}
+            >
               <div className="bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all border border-gray-100">
                 <div className="relative h-60 w-full">
                   <OptimizedImage

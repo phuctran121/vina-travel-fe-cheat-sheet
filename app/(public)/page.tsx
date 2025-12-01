@@ -5,9 +5,9 @@ import IntroductionSection from "@/components/home/IntroductionSection";
 import IntroSection from "@/components/home/IntroSection";
 import VideoSection from "@/components/home/VideoSection";
 import HomeSliderSection from "@/components/home/HomeSliderSection";
+import FeaturedSection from "@/components/home/FeaturedSection";
 
 // 1. Force Static: Bắt buộc trang này là tĩnh
-export const dynamic = "force-static";
 
 // 2. Revalidate: Dữ liệu server coi như không đổi trong 1 ngày (86400s)
 // Để Next.js tự tin cache ở client lâu hơn
@@ -21,6 +21,8 @@ export default function Home() {
       <HeroSection />
 
       <IntroductionSection />
+
+      <FeaturedSection />
 
       <IntroSection />
 

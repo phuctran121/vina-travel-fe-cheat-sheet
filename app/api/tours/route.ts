@@ -3,25 +3,38 @@ import { TOURS } from "@/lib/mock-db";
 import { delay } from "@/lib/utils";
 
 export async function GET(request: Request) {
-  await delay(500); // Giả lập delay
+  await delay(500); // Giả lập mạng
 
-  // 1. Lấy search param an toàn
   const { searchParams } = new URL(request.url);
-  const search = searchParams.get("search"); // Trả về string hoặc null
+  // Lấy tham số phân trang
+  const page = parseInt(searchParams.get("page") || "1");
+  const limit = parseInt(searchParams.get("limit") || "6"); // Mặc định 6 tour/trang
+  const search = searchParams.get("search")?.toLowerCase() || "";
 
-  // 2. Logic lọc:
-  // Nếu có search -> Lọc
-  // Nếu không có (null/empty) -> Trả về hết TOURS
-  let data = TOURS;
-
+  // 1. Lọc theo search trước
+  let filteredData = TOURS;
   if (search) {
-    const lowerSearch = search.toLowerCase();
-    data = TOURS.filter(
+    filteredData = TOURS.filter(
       (t) =>
-        t.name.toLowerCase().includes(lowerSearch) ||
-        t.location.toLowerCase().includes(lowerSearch)
+        t.name.toLowerCase().includes(search) ||
+        t.location.toLowerCase().includes(search)
     );
   }
 
-  return NextResponse.json(data);
+  // 2. Tính toán phân trang
+  const startIndex = (page - 1) * limit;
+  const endIndex = startIndex + limit;
+  const paginatedData = filteredData.slice(startIndex, endIndex);
+
+  // 3. Trả về cả data và metadata (tổng số trang)
+  return NextResponse.json({
+    data: paginatedData,
+    pagination: {
+      page,
+      limit,
+      total: filteredData.length,
+      totalPages: Math.ceil(filteredData.length / limit),
+      hasMore: endIndex < filteredData.length,
+    },
+  });
 }

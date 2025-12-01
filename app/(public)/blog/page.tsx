@@ -26,7 +26,12 @@ export default function BlogPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {posts.map((post) => (
-          <Link key={post.id} href={`/blog/${post.slug}`} className="group">
+          <Link
+            key={post.id}
+            href={`/blog/${post.slug}`}
+            className="group"
+            prefetch={false}
+          >
             <article className="bg-white rounded-xl overflow-hidden shadow-sm border hover:shadow-lg transition-all duration-300">
               <div className="relative h-48 w-full overflow-hidden">
                 <Image

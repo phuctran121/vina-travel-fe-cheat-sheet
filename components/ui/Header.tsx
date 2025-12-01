@@ -7,6 +7,8 @@ import { cn } from "@/lib/utils";
 const NAV_ITEMS = [
   { label: "Home (Island Arch)", href: "/" },
   { label: "Tours (URL State)", href: "/tours" },
+  { label: "Tours (Infinite Scroll)", href: "/tours-infinite" },
+  { label: "Tours (Pagination)", href: "/tours-pagination" },
   {
     label: "Detail Demo (SSG+ISR)",
     // Hardcode slug này để bấm phát là vào test trang chi tiết luôn, đỡ phải tìm
@@ -23,7 +25,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-gray-100 bg-white/80 backdrop-blur-md">
       <div className="container mx-auto h-16 flex items-center justify-between px-4">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-2">
+        <Link href="/" className="flex items-center gap-2" prefetch={false}>
           <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center text-white font-bold">
             V
           </div>
@@ -41,6 +43,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
+                prefetch={false}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
                   isActive ? "text-primary font-bold" : "text-gray-500"

@@ -1,12 +1,12 @@
 import Image from "next/image";
-import IntroductionImg from "@/public/images/aop-header-background.webp";
+import IntroductionImg from "@/public/images/esg-result-background-old.webp";
 
-export default function IntroductionSection() {
+export default function IntroSection() {
   return (
     <section className="container mx-auto px-4 py-16">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
         {/* Content Side */}
-        <div className="order-1 md:order-1">
+        <div className="order-1 md:order-2">
           <h2 className="text-3xl font-bold mb-4">Tính năng nổi bật</h2>
           <p className="text-gray-600">
             Mô tả chi tiết về tính năng sản phẩm...
@@ -14,7 +14,7 @@ export default function IntroductionSection() {
         </div>
 
         {/* Illustration Side */}
-        <div className="relative order-1 md:order-2 w-full h-64 md:h-96">
+        <div className="relative order-2 md:order-1 w-full h-64 md:h-96">
           <Image
             src={IntroductionImg}
             alt="Minh họa tính năng"

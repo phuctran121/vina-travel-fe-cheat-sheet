@@ -2,6 +2,7 @@
 import HeroSection from "@/components/home/HeroSection";
 import TestPSection from "@/components/home/TestPSection";
 import IntroductionSection from "@/components/home/IntroductionSection";
+import IntroSection from "@/components/home/IntroSection";
 import VideoSection from "@/components/home/VideoSection";
 import HomeSliderSection from "@/components/home/HomeSliderSection";
 
@@ -14,16 +15,18 @@ export const dynamic = "force-static";
 
 export default function Home() {
   return (
-    <main className="min-h-screen pb-20">
+    <main className="min-h-screen">
       <h1>{Date.now()}</h1>
       {/* Load ngay lập tức (Static HTML + CSS) */}
       <HeroSection />
 
-      <HomeSliderSection />
+      <IntroductionSection />
+
+      <IntroSection />
 
       <TestPSection />
 
-      <IntroductionSection />
+      <HomeSliderSection />
 
       <VideoSection />
 

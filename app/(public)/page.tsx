@@ -16,7 +16,6 @@ import FeaturedSection from "@/components/home/FeaturedSection";
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <h1>{Date.now()}</h1>
       {/* Load ngay lập tức (Static HTML + CSS) */}
       <HeroSection />
 
@@ -30,7 +29,7 @@ export default function Home() {
 
       <HomeSliderSection />
 
-      <VideoSection />
+      {/* <VideoSection /> */}
 
       {/* Load Data bất đồng bộ + Lazy load JS Swiper */}
       {/* <FeaturedSection /> */}

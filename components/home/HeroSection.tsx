@@ -1,12 +1,13 @@
-import Image from "next/image";
+// import Image from "next/image";
 import SearchBar from "./SearchBar";
-import HeroImg from "@/public/images/aop-hero-section_poster.webp";
+// import HeroImg from "@/public/images/aop-hero-section_poster.webp";
+import HeroVideo from "./HeroVideo"; // Component vừa tạo
 
 export default function HeroSection() {
   return (
     <section className="relative h-[820px] w-full flex items-center justify-center mb-16">
       {/* 1. Background Image Layer (LCP) */}
-      <div className="absolute inset-0 z-0">
+      {/* <div className="absolute inset-0 z-0">
         <Image
           src={HeroImg} // Ảnh chất lượng cao
           alt="Vịnh Hạ Long - Di sản thiên nhiên thế giới"
@@ -14,6 +15,14 @@ export default function HeroSection() {
           priority // QUAN TRỌNG: Báo trình duyệt tải ngay -> Tăng điểm LCP
           className="object-cover brightness-[0.7]" // Làm tối ảnh để chữ nổi bật
           sizes="100vw"
+        />
+      </div> */}
+
+      <div className="absolute inset-0 z-0">
+        <HeroVideo
+          posterSrc="/posters/esg-hero-section-poster.webp" // Ảnh tĩnh
+          videoSrcMp4="/videos/esg_hero_section.mp4" // Video (nên để trong folder public/videos)
+          // videoSrcWebm="/videos/hero-bg.webm" // Nên convert thêm file này
         />
       </div>
 
